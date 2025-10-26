@@ -20,23 +20,12 @@
         <h2>Sleepover Requests</h2>
       </div>
 
-      <div class="request-list">
-        <!-- These would come dynamically later -->
-        <button class="btn" onclick="goToVerify('John Doe','sleepover')">
-          John Doe
-        </button>
-        <button class="btn" onclick="goToVerify('Jane Smith','sleepover')">
-          Jane Smith
-        </button>
-        <button class="btn" onclick="goToVerify('Alex Brown','sleepover')">
-          Alex Brown
-        </button>
-        <button class="btn" onclick="goToVerify('Sarah Lee','sleepover')">
-          Sarah Lee
-        </button>
+      <div id="admin-sleepover-container" class="request-list">
+        <!-- Sleepover requests will be loaded here dynamically -->
       </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="api-config.js"></script>
+    <script src="sleepover.js"></script>
   </body>
 </html>
