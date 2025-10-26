@@ -20,26 +20,27 @@
       </div>
       <p class="subtitle">Request a sleepover pass</p>
 
-      <form class="signup-form">
-        <label for="guest-name">Enter Room Number</label>
-        <input type="text" id="guest-name" placeholder="Enter room number" />
+      <form class="signup-form" id="sleepover-form">
+        <label for="room-number">Enter Room Number</label>
+        <input type="text" id="room-number" placeholder="Enter room number" required />
 
-        <label for="guest-name">Visitor's Name</label>
-        <input type="text" id="guest-name" placeholder="Enter visitor's name" />
+        <label for="visitor-name">Visitor's Name</label>
+        <input type="text" id="visitor-name" placeholder="Enter visitor's name" required />
 
-        <label for="guest-name">Visitor's ID</label>
-        <input type="text" id="guest-name" placeholder="Enter visitor's ID" />
+        <label for="visitor-id">Visitor's ID</label>
+        <input type="text" id="visitor-id" placeholder="Enter visitor's ID" required />
 
-        <label for="guest-name">Phone Number</label>
-        <input type="text" id="guest-name" placeholder="Enter Phone Number" />
+        <label for="phone-number">Phone Number</label>
+        <input type="text" id="phone-number" placeholder="Enter Phone Number" required />
 
         <label for="date">Date of Sleepover</label>
-        <input type="date" id="date" />
+        <input type="date" id="date" required />
 
-        <button class="submit-btn" onclick="simulateSubmit(this)">Send</button>
+        <button type="submit" class="submit-btn">Send</button>
       </form>
       <img class="Housebackground" src="img/house.jpeg" alt="House Image" />
     </div>
   </body>
-  <script src="script.js"></script>
+  <script src="api-config.js"></script>
+  <script src="sleepover.js"></script>
 </html>
