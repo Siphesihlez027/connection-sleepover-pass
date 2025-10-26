@@ -132,6 +132,71 @@ function viewSleepoverDetail(requestId) {
     window.location.href = `sleepover_verify.html?id=${requestId}`;
 }
 
+// ===== LOAD SINGLE SLEEPOVER REQUEST DETAIL =====
+async function loadSleepoverDetail() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const requestId = urlParams.get('id');
+    
+    if (!requestId) {
+        showError('Invalid request ID');
+        return;
+    }
+    
+    try {
+        const request = await apiCall(
+            API_ENDPOINTS.sleepover.getById(requestId),
+            HTTP_METHODS.GET
+        );
+        
+        displaySleepoverDetail(request);
+        
+    } catch (error) {
+        showError('Failed to load sleepover request details');
+    }
+}
+
+// ===== DISPLAY SLEEPOVER DETAIL =====
+function displaySleepoverDetail(request) {
+    // Populate detail elements
+    const elements = {
+        'student-name': request.studentName || request.studentEmail,
+        'room-number': request.roomId,
+        'visitor-name': request.visitorName,
+        'visitor-id': request.visitorId,
+        'request-date': new Date(request.date).toLocaleDateString()
+    };
+    
+    for (const [id, value] of Object.entries(elements)) {
+        const element = document.getElementById(id);
+        if (element) {
+            element.textContent = value;
+        }
+    }
+    
+    // Store request ID for update functions
+    window.currentRequestId = request.id;
+}
+
+// ===== APPROVE/REJECT SLEEPOVER REQUEST =====
+async function updateSleepoverStatus(status) {
+    if (!window.currentRequestId) {
+        showError('No request ID found');
+        return;
+    }
+    
+    const endpoint = status === 'APPROVED' ? API_ENDPOINTS.sleepover.approve(window.currentRequestId) : API_ENDPOINTS.sleepover.reject(window.currentRequestId);
+    
+    try {
+        await apiCall(endpoint, HTTP_METHODS.PUT);
+        showSuccess(`Sleepover request ${status.toLowerCase()} successfully!`);
+        setTimeout(() => {
+            window.location.href = 'adssleepover.html';
+        }, 1500);
+    } catch (error) {
+        showError(error.message || `Failed to ${status.toLowerCase()} sleepover request`);
+    }
+}
+
 // ===== AUTO-INITIALIZE =====
 document.addEventListener('DOMContentLoaded', () => {
     const sleepoverForm = document.getElementById('sleepover-form');
@@ -145,5 +210,19 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (document.getElementById('admin-sleepover-container')) {
         loadAllSleepoverRequests();
+    }
+    
+    if (window.location.pathname.includes('sleepover_verify.html')) {
+        loadSleepoverDetail();
+    }
+    
+    const approveBtn = document.getElementById('approve-btn');
+    if (approveBtn) {
+        approveBtn.addEventListener('click', () => updateSleepoverStatus('APPROVED'));
+    }
+    
+    const denyBtn = document.getElementById('deny-btn');
+    if (denyBtn) {
+        denyBtn.addEventListener('click', () => updateSleepoverStatus('REJECTED'));
     }
 });

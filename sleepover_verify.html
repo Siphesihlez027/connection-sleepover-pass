@@ -23,13 +23,13 @@
 
       <!-- Student and Visitor Info -->
       <div class="student-info">
-        <h3 id="studentName">Student Name</h3>
+        <h3 id="student-name">Student Name</h3>
 
         <div class="info-item">
           <i class="fa-solid fa-id-card"></i>
           <div>
             <p class="label">Visitor ID</p>
-            <p id="visitorId"></p>
+            <p id="visitor-id"></p>
           </div>
         </div>
 
@@ -37,15 +37,7 @@
           <i class="fa-solid fa-user"></i>
           <div>
             <p class="label">Visitor Name</p>
-            <p id="visitorName"></p>
-          </div>
-        </div>
-
-        <div class="info-item">
-          <i class="fa-solid fa-user-graduate"></i>
-          <div>
-            <p class="label">Student Name</p>
-            <p id="studentNameDisplay"></p>
+            <p id="visitor-name"></p>
           </div>
         </div>
 
@@ -53,39 +45,32 @@
           <i class="fa-solid fa-door-closed"></i>
           <div>
             <p class="label">Room Number</p>
-            <p id="roomNumber"></p>
+            <p id="room-number"></p>
           </div>
         </div>
 
         <div class="info-item">
           <i class="fa-solid fa-calendar-days"></i>
           <div>
-            <p class="label">Requested Date (From)</p>
-            <p id="requestDateFrom"></p>
-          </div>
-        </div>
-
-        <div class="info-item">
-          <i class="fa-solid fa-calendar-check"></i>
-          <div>
-            <p class="label">Requested Date (To)</p>
-            <p id="requestDateTo"></p>
+            <p class="label">Requested Date</p>
+            <p id="request-date"></p>
           </div>
         </div>
       </div>
 
       <!-- Action Buttons -->
       <div class="action-buttons">
-        <button class="approve-btn" id="approveBtn">
+        <button class="approve-btn" id="approve-btn">
           <i class="fa-solid fa-check"></i> Approve
         </button>
-        <button class="deny-btn" id="denyBtn">
+        <button class="deny-btn" id="deny-btn">
           <i class="fa-solid fa-xmark"></i> Deny
         </button>
       </div>
     </div>
 
     <!-- External JS File -->
-    <script src="script.js"></script>
+    <script src="api-config.js"></script>
+    <script src="sleepover.js"></script>
   </body>
 </html>
